@@ -63,16 +63,16 @@ export function ChannelSidebar({
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       {/* Atalho fixo: área de amigos (acima do servidor) */}
-      <div className="border-b border-abyss-950/60 p-2">
+      <div className="border-b border-white/[0.055] p-2">
         <button
           type="button"
           onClick={onOpenFriends}
           aria-pressed={friendsActive}
           className={cn(
-            'flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm font-semibold transition-colors',
+            'flex w-full items-center gap-2.5 rounded-[var(--radius-md)] px-2.5 py-2 text-left text-[14px] font-semibold transition-all duration-150',
             friendsActive
-              ? 'bg-abyss-600 text-white'
-              : 'text-slate-300 hover:bg-abyss-700/60 hover:text-white',
+              ? 'bg-accent/15 text-white'
+              : 'text-slate-300 hover:bg-white/[0.04] hover:text-white',
           )}
         >
           <span aria-hidden="true" className="text-base leading-none">
@@ -90,12 +90,13 @@ export function ChannelSidebar({
         </button>
       </div>
 
-      <div className="relative border-b border-abyss-950/60">
+      {/* Header do servidor */}
+      <div className="relative border-b border-white/[0.055]">
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
-          className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-white transition-colors hover:bg-abyss-700/40"
+          className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-white transition-colors duration-150 hover:bg-white/[0.04]"
         >
           <span className="truncate">{server.icon ? `${server.icon} ${server.name}` : server.name}</span>
           <span className={cn('text-slate-400 transition-transform', menuOpen && 'rotate-180')}>▾</span>
@@ -124,21 +125,21 @@ export function ChannelSidebar({
           const list = byCategory.get(cat.id) ?? []
           return (
             <div key={cat.id} className="mb-4">
-              <div className="mb-1 flex items-center justify-between px-2">
-                <p className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">▾ {cat.name}</p>
+              <div className="mb-1.5 flex items-center justify-between px-2">
+                <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">▾ {cat.name}</p>
                 {isOwner && (
                   <button
                     type="button"
                     aria-label={`Criar canal em ${cat.name}`}
                     title={`Criar canal em ${cat.name}`}
                     onClick={() => onCreateChannel(cat.id)}
-                    className="text-slate-400 transition-colors hover:text-white"
+                    className="flex h-4 w-4 items-center justify-center rounded-[var(--radius-sm)] text-slate-500 transition-all duration-150 hover:bg-white/[0.06] hover:text-white hover:scale-110"
                   >
                     +
                   </button>
                 )}
               </div>
-              <ul className="space-y-0.5">
+              <ul className="space-y-px">
                 {list.map((channel) => {
                   const active = channel.id === activeChannelId
                   return (
@@ -147,16 +148,16 @@ export function ChannelSidebar({
                         type="button"
                         onClick={() => onSelectChannel(channel.id)}
                         className={cn(
-                          'group flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-left text-[15px] transition-colors',
+                          'group flex w-full items-center gap-1.5 rounded-[var(--radius-sm)] px-2 py-[7px] text-left text-[14px] font-medium transition-all duration-150',
                           active
-                            ? 'bg-abyss-600 text-white'
-                            : 'text-slate-400 hover:bg-abyss-700/60 hover:text-slate-200',
+                            ? 'bg-accent/15 text-white'
+                            : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200',
                         )}
                       >
-                        <span className="text-lg leading-none text-slate-500 group-hover:text-slate-300">
+                        <span className="text-base leading-none text-slate-500 transition-colors duration-150 group-hover:text-slate-300">
                           {channel.type === 'text' ? '#' : '🔊'}
                         </span>
-                        <span className="min-w-0 flex-1 truncate font-medium">{channel.name}</span>
+                        <span className="min-w-0 flex-1 truncate">{channel.name}</span>
                         {channel.unreadCount && !active ? (
                           <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-danger-500 px-1 text-[10px] font-bold text-white">
                             {channel.unreadCount}
@@ -172,7 +173,7 @@ export function ChannelSidebar({
         })}
 
         {uncategorized.length > 0 && (
-          <ul className="space-y-0.5">
+          <ul className="space-y-px">
             {uncategorized.map((channel) => {
               const active = channel.id === activeChannelId
               return (
@@ -181,13 +182,13 @@ export function ChannelSidebar({
                     type="button"
                     onClick={() => onSelectChannel(channel.id)}
                     className={cn(
-                      'flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-left text-[15px] transition-colors',
+                      'flex w-full items-center gap-1.5 rounded-[var(--radius-sm)] px-2 py-[7px] text-left text-[14px] font-medium transition-all duration-150',
                       active
-                        ? 'bg-abyss-600 text-white'
-                        : 'text-slate-400 hover:bg-abyss-700/60 hover:text-slate-200',
+                        ? 'bg-accent/15 text-white'
+                        : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200',
                     )}
                   >
-                    <span className="text-lg leading-none text-slate-500">{channel.type === 'text' ? '#' : '🔊'}</span>
+                    <span className="text-base leading-none text-slate-500">{channel.type === 'text' ? '#' : '🔊'}</span>
                     <span className="truncate">{channel.name}</span>
                   </button>
                 </li>

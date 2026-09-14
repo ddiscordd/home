@@ -8,7 +8,7 @@ interface VoicePlaceholderProps {
 export function VoicePlaceholder({ channel }: VoicePlaceholderProps) {
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <header className="flex items-center gap-2 border-b border-abyss-950/60 px-4 py-3">
+      <header className="flex h-12 shrink-0 items-center gap-2 border-b border-white/[0.055] px-4">
         <span aria-hidden="true" className="text-xl text-slate-500">
           🔊
         </span>

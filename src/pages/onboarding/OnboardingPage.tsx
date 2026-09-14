@@ -85,7 +85,7 @@ function StepVisual({ kind }: { kind: OnboardingStep['visual'] }) {
       {['#7c5cff', '#3ba55d', '#e06c5b', '#4d9de0'].map((color, i) => (
         <span
           key={color}
-          className="animate-fade-in flex h-11 w-11 items-center justify-center rounded-full border-[3px] border-abyss-850 text-sm font-bold text-white"
+          className="animate-fade-in flex h-11 w-11 items-center justify-center rounded-full border-[3px] border-surface-1 text-sm font-bold text-white"
           style={{ backgroundColor: color, animationDelay: `${i * 90}ms`, zIndex: 10 - i }}
         >
           {String.fromCharCode(65 + i)}

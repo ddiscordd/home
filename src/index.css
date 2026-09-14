@@ -19,30 +19,90 @@
   --color-accent-500: var(--system-accent);
   --color-accent-600: color-mix(in srgb, var(--system-accent) 80%, black);
 
-  --color-success-500: #3ba55d;
+  --color-success-500: #23c483;
   --color-danger-400: #f27474;
   --color-danger-500: #ed4245;
   --color-warning-500: #faa81a;
 }
 
+/* ============================================================
+   DESIGN TOKENS — Paleta dark sofisticada
+   ============================================================ */
 :root {
-  --system-bg: #0b0e17;
-  --system-rail: #070a12;
-  --system-sidebar: #10141f;
-  --system-chat: #151a28;
-  --system-header: #10141f;
-  --system-panel: #10141f;
-  --system-text: #f2f3f5;
-  --system-text-secondary: #b5bac1;
-  --system-accent: #7c5cff;
-  --system-input: #151a28;
-  --system-button: #7c5cff;
+  /* Superfícies — 5 níveis de profundidade sutil */
+  --surface-0: #0d0f14;  /* background geral */
+  --surface-1: #10131a;  /* sidebar */
+  --surface-2: #151923;  /* painéis internos */
+  --surface-3: #171b25;  /* cards elevados */
+  --surface-4: #1c2230;  /* hover/active */
+
+  /* Sistema legado (mantido para compatibilidade) */
+  --system-bg: var(--surface-0);
+  --system-rail: #0a0d13;
+  --system-sidebar: var(--surface-1);
+  --system-chat: var(--surface-2);
+  --system-header: var(--surface-1);
+  --system-panel: var(--surface-2);
+  --system-input: var(--surface-3);
+  --system-button: #5865f2;
   --system-hover: rgba(255, 255, 255, 0.04);
+
+  /* Texto */
+  --text-primary: #f5f7fb;
+  --text-secondary: #aab2c0;
+  --text-muted: #737d8d;
+  --system-text: var(--text-primary);
+  --system-text-secondary: var(--text-secondary);
+
+  /* Accent */
+  --accent: #5865f2;
+  --accent-hover: #6874ff;
+  --accent-glow: rgba(88, 101, 242, 0.15);
+  --system-accent: var(--accent);
+
+  /* Status */
+  --online: #23c483;
+  --idle: #faa81a;
+  --dnd: #ed4245;
+  --offline: #737d8d;
+
+  /* Bordas */
+  --border: rgba(255, 255, 255, 0.055);
+  --border-strong: rgba(255, 255, 255, 0.1);
+
+  /* Dimensões */
   --system-rail-width: 72px;
   --system-sidebar-width: 240px;
   --system-header-height: 48px;
   --system-font-scale: 100%;
   --system-radius: 8px;
+
+  /* Espaçamento */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Raios */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 0 2px var(--accent-glow);
+
+  /* Transições */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
 }
 
 html,
@@ -81,11 +141,11 @@ body {
   background: transparent;
 }
 
-/* ============ Animaciones (solo CSS, sin dependencias) ============ */
+/* ============ Animações refinadas ============ */
 @keyframes concord-fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.98);
+    transform: translateY(8px) scale(0.98);
   }
   to {
     opacity: 1;
@@ -94,27 +154,186 @@ body {
 }
 
 @keyframes concord-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes concord-slide-in {
   from {
     opacity: 0;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes concord-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes concord-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes concord-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes concord-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes concord-pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes concord-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .animate-fade-up {
-  animation: concord-fade-up 0.45s ease-out both;
+  animation: concord-fade-up var(--duration-slow) var(--ease-out) both;
 }
 .animate-fade-in {
-  animation: concord-fade-in 0.4s ease-out both;
+  animation: concord-fade-in var(--duration-normal) var(--ease-out) both;
+}
+.animate-fade-slide {
+  animation: concord-slide-in var(--duration-slow) var(--ease-out) both;
+}
+.animate-scale-in {
+  animation: concord-scale-in var(--duration-normal) var(--ease-out) both;
+}
+.animate-message-in {
+  animation: concord-message-in var(--duration-normal) var(--ease-out) both;
+}
+.animate-float {
+  animation: concord-float 3s var(--ease-out) infinite;
 }
 
-/* Fondo de auth: gradientes discretos + glow muy suave */
+/* Stagger delays para listas */
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 60ms; }
+.stagger-3 { animation-delay: 120ms; }
+.stagger-4 { animation-delay: 180ms; }
+.stagger-5 { animation-delay: 240ms; }
+
+/* ============ Utilitários de transição ============ */
+.transition-micro {
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.transition-normal {
+  transition:
+    background-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+/* Hover lift sutil */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Icon button padronizado */
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+.icon-button:active {
+  transform: scale(0.96);
+}
+.icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-glow);
+}
+
+/* Surface utilities */
+.surface-0 { background-color: var(--surface-0); }
+.surface-1 { background-color: var(--surface-1); }
+.surface-2 { background-color: var(--surface-2); }
+.surface-3 { background-color: var(--surface-3); }
+.surface-4 { background-color: var(--surface-4); }
+
+/* Scrollbar refinada */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Auth background */
 .auth-bg {
   background:
-    radial-gradient(60% 50% at 20% 20%, rgba(124, 92, 255, 0.16), transparent 70%),
-    radial-gradient(55% 45% at 85% 75%, rgba(61, 92, 255, 0.1), transparent 70%),
-    linear-gradient(160deg, #0b0e17 0%, #10141f 55%, #0b0e17 100%);
+    radial-gradient(60% 50% at 20% 20%, rgba(88, 101, 242, 0.12), transparent 70%),
+    radial-gradient(55% 45% at 85% 75%, rgba(61, 92, 255, 0.08), transparent 70%),
+    linear-gradient(160deg, var(--surface-0) 0%, var(--surface-1) 55%, var(--surface-0) 100%);
 }
 
 .auth-glow {
@@ -129,21 +348,28 @@ body {
   left: -6%;
   width: 300px;
   height: 300px;
-  background: rgba(124, 92, 255, 0.28);
+  background: rgba(88, 101, 242, 0.22);
 }
 .auth-glow--b {
   right: -8%;
   bottom: -6%;
   width: 260px;
   height: 260px;
-  background: rgba(77, 157, 224, 0.2);
+  background: rgba(77, 157, 224, 0.15);
 }
 
-/* Respetar prefers-reduced-motion: elimina animaciones no esenciales */
+/* Modal animation */
+.animate-modal-in {
+  animation: concord-fade-up var(--duration-normal) var(--ease-out) both;
+}
+
+/* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .animate-fade-in,
   .animate-fade-slide,
+  .animate-scale-in,
+  .animate-message-in,
   .animate-float,
   .animate-modal-in {
     animation: none;
@@ -151,45 +377,7 @@ body {
   .auth-glow {
     display: none;
   }
-}
-
-@keyframes concord-fade-slide {
-  from {
-    opacity: 0;
-    transform: translateX(14px);
+  .hover-lift:hover {
+    transform: none;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-.animate-fade-slide {
-  animation: concord-fade-slide 0.3s ease-out both;
-}
-
-@keyframes concord-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-.animate-float {
-  animation: concord-float 5s ease-in-out infinite;
-}
-
-@keyframes concord-modal-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-.animate-modal-in {
-  animation: concord-modal-in 200ms ease-out both;
 }

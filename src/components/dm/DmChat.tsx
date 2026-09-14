@@ -48,9 +48,9 @@ export function DmChat({ friend }: DmChatProps) {
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col bg-abyss-800">
+    <div className="flex h-full min-h-0 flex-col bg-surface-2">
       {/* Header do chat privado */}
-      <header className="flex items-center gap-2.5 border-b border-abyss-950/60 px-4 py-2.5">
+      <header className="flex h-12 shrink-0 items-center gap-2.5 border-b border-white/[0.055] px-4">
         <span
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
           style={{ backgroundColor: friend.avatarColor }}

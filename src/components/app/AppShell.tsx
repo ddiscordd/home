@@ -107,7 +107,7 @@ export function AppShell() {
 
   if (status === 'ERROR') {
     return (
-      <div className="animate-fade-in flex h-full flex-col items-center justify-center gap-3 bg-abyss-900 px-6 text-center">
+      <div className="animate-fade-in flex h-full flex-col items-center justify-center gap-3 bg-surface-0 px-6 text-center">
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-danger-500/15 text-2xl text-danger-400">
           !
         </span>
@@ -158,7 +158,7 @@ export function AppShell() {
     <div
       aria-busy={loading}
       data-editor-id="app-shell"
-      className="relative flex h-full bg-abyss-900 text-slate-200"
+      className="relative flex h-full bg-surface-0 text-slate-200"
       style={{
         fontSize: 'var(--system-font-scale)',
         borderRadius: 'var(--system-radius)',
@@ -176,7 +176,7 @@ export function AppShell() {
 
       <div
         data-editor-id="navigation-sidebar"
-        className="flex shrink-0 flex-col bg-abyss-850"
+        className="flex shrink-0 flex-col bg-surface-1"
         style={{ width: 'var(--system-sidebar-width)' }}
       >
         <ChannelSidebar
@@ -195,7 +195,7 @@ export function AppShell() {
         <UserPanel />
       </div>
 
-      <main data-editor-id="main-content" className="flex min-w-0 flex-1 flex-col bg-abyss-800">
+      <main data-editor-id="main-content" className="flex min-w-0 flex-1 flex-col bg-surface-2">
         {mainView === 'friends' ? (
           activeDm ? (
             <DmChat friend={activeDm} />
@@ -231,7 +231,7 @@ export function AppShell() {
       {mainView === 'server' && (
         <aside
           data-editor-id="right-sidebar"
-          className="hidden shrink-0 bg-abyss-850 xl:block"
+          className="hidden shrink-0 bg-surface-1 xl:block"
           style={{ width: 'var(--system-sidebar-width)' }}
         >
           <MembersSidebar members={members} />

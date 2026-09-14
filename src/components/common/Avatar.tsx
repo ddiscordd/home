@@ -44,7 +44,7 @@ export function Avatar({ user, size = 'md', showStatus = false, className }: Ava
       {showStatus && (
         <span
           className={cn(
-            'absolute -right-0.5 -bottom-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-abyss-850',
+            'absolute -right-0.5 -bottom-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-surface-1',
             STATUS_DOT[user.status],
           )}
         />

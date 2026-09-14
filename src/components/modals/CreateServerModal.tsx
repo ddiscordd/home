@@ -76,7 +76,7 @@ export function CreateServerModal({ onClose, onCreate }: CreateServerModalProps)
           onChange={(e) => setIcon(e.target.value)}
           maxLength={50}
           placeholder="Emoji ou texto curto"
-          className="h-11 w-full rounded-lg border border-abyss-600 bg-abyss-800 px-3 text-[15px] text-slate-100 outline-none transition-all placeholder:text-slate-500 focus:border-accent-400 focus:ring-2 focus:ring-accent-400/30"
+          className="h-11 w-full rounded-[var(--radius-lg)] border border-white/[0.08] bg-surface-3 px-3 text-[15px] text-slate-100 outline-none transition-all duration-200 placeholder:text-slate-500 focus:border-accent/30 focus:shadow-[0_0_0_2px_var(--accent-glow)]"
         />
 
         {error && (

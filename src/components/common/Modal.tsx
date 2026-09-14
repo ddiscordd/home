@@ -11,7 +11,7 @@ interface ModalProps {
 export function Modal({ title, onClose, children }: ModalProps) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
       onKeyDown={(e) => {
         if (e.key === 'Escape') onClose()
@@ -24,11 +24,11 @@ export function Modal({ title, onClose, children }: ModalProps) {
         aria-label={title}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          'w-[440px] max-w-full rounded-2xl border border-white/10 bg-abyss-850 p-6 shadow-2xl',
-          'animate-fade-up',
+          'w-[440px] max-w-full rounded-[var(--radius-xl)] border border-white/[0.08] bg-surface-2 p-6 shadow-lg',
+          'animate-scale-in',
         )}
       >
-        <h2 className="text-lg font-bold text-white">{title}</h2>
+        <h2 className="text-lg font-semibold text-white">{title}</h2>
         <div className="mt-4">{children}</div>
       </div>
     </div>

@@ -52,14 +52,14 @@ export function FriendsPage() {
   ]
 
   return (
-    <div className="flex h-full min-h-0 flex-col bg-abyss-800">
+    <div className="flex h-full min-h-0 flex-col bg-surface-2">
       {/* Header da área */}
-      <header className="flex h-12 shrink-0 items-center gap-3 border-b border-abyss-950/60 px-4">
+      <header className="flex h-12 shrink-0 items-center gap-3 border-b border-white/[0.055] px-4">
         <span className="text-lg text-slate-400" aria-hidden="true">
           👥
         </span>
-        <h1 className="text-[15px] font-bold text-white">Amigos</h1>
-        <span aria-hidden="true" className="mx-1 h-4 w-px bg-abyss-600" />
+        <h1 className="text-[15px] font-semibold text-white">Amigos</h1>
+        <span aria-hidden="true" className="mx-1 h-4 w-px bg-white/[0.08]" />
         {tabs.map((entry) => (
           <button
             key={entry.id}
@@ -67,8 +67,8 @@ export function FriendsPage() {
             onClick={() => setTab(entry.id)}
             aria-pressed={tab === entry.id}
             className={cn(
-              'flex h-6 items-center gap-1.5 rounded-md px-2 text-xs font-semibold transition-colors',
-              tab === entry.id ? 'bg-abyss-600 text-white' : 'text-slate-400 hover:bg-abyss-700 hover:text-slate-200',
+              'flex h-7 items-center gap-1.5 rounded-[var(--radius-sm)] px-2.5 text-[11px] font-semibold transition-all duration-150',
+              tab === entry.id ? 'bg-accent/15 text-white' : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200',
             )}
           >
             {entry.label}
@@ -82,7 +82,7 @@ export function FriendsPage() {
         <button
           type="button"
           onClick={() => setAddOpen(true)}
-          className="ml-auto h-7 rounded-md bg-success-500 px-3 text-xs font-bold text-white transition-colors hover:bg-success-500/80"
+          className="ml-auto h-7 rounded-[var(--radius-md)] bg-online px-3 text-[11px] font-semibold text-white transition-all duration-150 hover:bg-online/80"
         >
           + Adicionar amigo
         </button>
@@ -180,7 +180,7 @@ function FriendList({
                 return (
                   <li
                     key={friend.id}
-                    className="animate-fade-up group flex items-center gap-2.5 rounded-lg px-2 py-1.5 transition-colors hover:bg-abyss-700/50"
+                    className="animate-fade-up group flex items-center gap-2.5 rounded-[var(--radius-md)] px-2 py-1.5 transition-all duration-150 hover:bg-white/[0.04]"
                     style={{ animationDelay: `${Math.min(index * 30, 200)}ms` }}
                   >
                     <span className="relative shrink-0">
@@ -194,7 +194,7 @@ function FriendList({
                       <span
                         aria-hidden="true"
                         className={cn(
-                          'absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-[3px] border-abyss-800',
+                          'absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-[3px] border-surface-2',
                           info.dot,
                         )}
                       />

@@ -15,27 +15,27 @@ export function UserPanel() {
   const avatarInitial = displayName.charAt(0).toUpperCase()
 
   return (
-    <div className="flex items-center gap-2 bg-abyss-950/60 px-2 py-2.5">
+    <div className="flex items-center gap-2.5 border-t border-white/[0.055] bg-surface-1 px-3 py-2.5">
       <div className="relative shrink-0">
         {user?.photoURL ? (
           <img
             src={user.photoURL}
             alt={`Avatar de ${displayName}`}
-            className="h-8 w-8 rounded-full object-cover"
+            className="h-9 w-9 rounded-full object-cover"
           />
         ) : (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-600 text-xs font-bold text-white">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-[13px] font-bold text-white">
             {avatarInitial}
           </div>
         )}
         <span
           aria-hidden="true"
-          className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-abyss-850 bg-success-500"
+          className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-surface-1 bg-online"
         />
       </div>
       <div className="min-w-0 flex-1 leading-tight">
-        <p className="truncate text-[13px] font-bold text-white">{displayName}</p>
-        <p className="truncate text-[11px] text-slate-400" title={email}>
+        <p className="truncate text-[13px] font-semibold text-white">{displayName}</p>
+        <p className="truncate text-[11px] text-slate-500" title={email}>
           {muted ? 'Silenciado' : email || 'Online'}
         </p>
       </div>
@@ -45,8 +45,8 @@ export function UserPanel() {
         aria-label={muted ? 'Ativar microfone' : 'Silenciar'}
         onClick={() => setMuted((v) => !v)}
         className={cn(
-          'flex h-8 w-8 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-abyss-600 hover:text-white',
-          muted && 'bg-danger-500/20 text-danger-500 hover:bg-danger-500 hover:text-white',
+          'flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-400 transition-all duration-150 hover:bg-white/[0.06] hover:text-white',
+          muted && 'bg-danger-500/15 text-danger-500 hover:bg-danger-500 hover:text-white',
         )}
       >
         {muted ? '✕' : '◉'}
@@ -57,8 +57,8 @@ export function UserPanel() {
         aria-label={deafened ? 'Ativar áudio' : 'Ensurdecer'}
         onClick={() => setDeafened((v) => !v)}
         className={cn(
-          'flex h-8 w-8 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-abyss-600 hover:text-white',
-          deafened && 'bg-danger-500/20 text-danger-500 hover:bg-danger-500 hover:text-white',
+          'flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-400 transition-all duration-150 hover:bg-white/[0.06] hover:text-white',
+          deafened && 'bg-danger-500/15 text-danger-500 hover:bg-danger-500 hover:text-white',
         )}
       >
         ♪
@@ -68,7 +68,7 @@ export function UserPanel() {
         title="Configurações"
         aria-label="Abrir configurações"
         onClick={openSettings}
-        className="flex h-8 w-8 items-center justify-center rounded-md text-slate-300 transition-colors hover:bg-abyss-600 hover:text-white"
+        className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-400 transition-all duration-150 hover:bg-accent/15 hover:text-accent-300"
       >
         ⚙
       </button>

@@ -85,7 +85,7 @@ export function CreateChannelModal({ categories, initialCategoryId, onClose, onC
         <label htmlFor="channel-name" className="mt-4 mb-1.5 block text-[13px] font-medium text-slate-300">
           Nome do canal
         </label>
-        <div className="flex items-center rounded-lg border border-abyss-600 bg-abyss-800 transition-all focus-within:border-accent-400 focus-within:ring-2 focus-within:ring-accent-400/30">
+        <div className="flex items-center rounded-[var(--radius-lg)] border border-white/[0.08] bg-surface-3 transition-all duration-200 focus-within:border-accent/30 focus-within:shadow-[0_0_0_2px_var(--accent-glow)]">
           <span aria-hidden="true" className="pl-3 text-lg text-slate-500">
             {type === 'text' ? '#' : '🔊'}
           </span>

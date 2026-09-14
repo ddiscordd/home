@@ -51,9 +51,9 @@ export function SettingsPage() {
   const badgeFor = (id: SettingsSection): string | null => (id === 'solicitacoes' && requestCount > 0 ? String(requestCount) : null)
 
   return (
-    <div className="animate-fade-in fixed inset-0 z-50 flex bg-abyss-900 text-slate-200">
+    <div className="animate-fade-in fixed inset-0 z-50 flex bg-surface-0 text-slate-200">
       {/* Navegação lateral de configurações */}
-      <aside className="flex w-56 shrink-0 flex-col border-r border-abyss-950/60 bg-abyss-950/60">
+      <aside className="flex w-56 shrink-0 flex-col border-r border-white/[0.055] bg-surface-1">
         <button
           type="button"
           onClick={closeSettings}
@@ -156,7 +156,7 @@ function SectionTitle({ title, subtitle }: { title: string; subtitle: string }) 
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="animate-fade-up rounded-xl border border-abyss-950/40 bg-abyss-800/60 p-5">{children}</div>
+    <div className="animate-fade-up rounded-[var(--radius-xl)] border border-white/[0.055] bg-surface-3 p-5">{children}</div>
   )
 }
 
@@ -258,7 +258,7 @@ function PerfilSection({ user }: { user: FirebaseUser }) {
           Único e case-insensitive (Tronux27 e tronux27 são o mesmo nome). Mín. 3 · máx. 20 caracteres.
         </p>
         <div className="flex gap-2">
-          <div className="flex h-10 min-w-0 flex-1 items-center rounded-lg border border-abyss-600 bg-abyss-800 transition-all focus-within:border-accent-400 focus-within:ring-2 focus-within:ring-accent-400/30">
+          <div className="flex h-10 min-w-0 flex-1 items-center rounded-[var(--radius-lg)] border border-white/[0.08] bg-surface-3 transition-all duration-200 focus-within:border-accent/30 focus-within:shadow-[0_0_0_2px_var(--accent-glow)]">
             <span className="pl-3 text-slate-500" aria-hidden="true">
               @
             </span>
@@ -380,7 +380,7 @@ function SenhaSection({ user }: { user: FirebaseUser }) {
                 }}
                 autoComplete={field.autoComplete}
                 aria-label={field.label}
-                className="h-10 w-full rounded-lg border border-abyss-600 bg-abyss-800 px-3 text-[15px] text-slate-100 outline-none transition-all focus:border-accent-400 focus:ring-2 focus:ring-accent-400/30"
+                className="h-10 w-full rounded-[var(--radius-lg)] border border-white/[0.08] bg-surface-3 px-3 text-[15px] text-slate-100 outline-none transition-all duration-200 focus:border-accent/30 focus:shadow-[0_0_0_2px_var(--accent-glow)]"
               />
             </div>
           ))}
@@ -441,7 +441,7 @@ function LogoutSection() {
             if (event.target === event.currentTarget) setConfirming(false)
           }}
         >
-          <div className="animate-modal-in w-[380px] max-w-full rounded-xl border border-white/10 bg-abyss-800 p-6 shadow-2xl">
+          <div className="animate-scale-in w-[380px] max-w-full rounded-[var(--radius-xl)] border border-white/[0.08] bg-surface-2 p-6 shadow-lg">
             <h2 id="logout-title" className="text-[15px] font-bold text-white">
               Sair da conta?
             </h2>
