@@ -3,7 +3,6 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useApp } from '../../contexts/AppContext'
 import { avatarColorFrom } from '../../services/servers/serverService'
 import type { Message, User } from '../../types'
-import { cn } from '../../utils/cn'
 import { AppLoading } from '../common/AppLoading'
 import { ChannelSidebar } from '../channel-sidebar/ChannelSidebar'
 import { ChatArea } from '../chat/ChatArea'
@@ -160,6 +159,10 @@ export function AppShell() {
       aria-busy={loading}
       data-editor-id="app-shell"
       className="relative flex h-full bg-abyss-900 text-slate-200"
+      style={{
+        fontSize: 'var(--system-font-scale)',
+        borderRadius: 'var(--system-radius)',
+      }}
     >
       <ServerSidebar
         servers={servers}
@@ -168,9 +171,14 @@ export function AppShell() {
         onCreate={() => setServerModalOpen(true)}
         onOpenFriends={openFriends}
         friendsActive={mainView === 'friends'}
+        style={{ width: 'var(--system-rail-width)' }}
       />
 
-      <div data-editor-id="navigation-sidebar" className="flex w-60 shrink-0 flex-col bg-abyss-850">
+      <div
+        data-editor-id="navigation-sidebar"
+        className="flex shrink-0 flex-col bg-abyss-850"
+        style={{ width: 'var(--system-sidebar-width)' }}
+      >
         <ChannelSidebar
           server={activeServer}
           categories={categories}
@@ -221,7 +229,11 @@ export function AppShell() {
       </main>
 
       {mainView === 'server' && (
-        <aside data-editor-id="right-sidebar" className={cn('hidden w-60 shrink-0 bg-abyss-850 xl:block')}>
+        <aside
+          data-editor-id="right-sidebar"
+          className="hidden shrink-0 bg-abyss-850 xl:block"
+          style={{ width: 'var(--system-sidebar-width)' }}
+        >
           <MembersSidebar members={members} />
         </aside>
       )}

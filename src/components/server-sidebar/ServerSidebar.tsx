@@ -10,11 +10,12 @@ interface ServerSidebarProps {
   /** Abre a área de amigos (botão Início). */
   onOpenFriends?: () => void
   friendsActive?: boolean
+  style?: React.CSSProperties
 }
 
-export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onOpenFriends, friendsActive = false }: ServerSidebarProps) {
+export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onOpenFriends, friendsActive = false, style }: ServerSidebarProps) {
   return (
-    <nav aria-label="Servidores" className="flex w-[72px] shrink-0 flex-col items-center gap-2 overflow-y-auto bg-abyss-950 py-3">
+    <nav aria-label="Servidores" className="flex shrink-0 flex-col items-center gap-2 overflow-y-auto bg-abyss-950 py-3" style={style}>
       <button
         type="button"
         title="Amigos"
