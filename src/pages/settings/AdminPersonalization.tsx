@@ -57,7 +57,7 @@ export function applySystemAppearance(appearance: SystemAppearance): void {
     else root.style.removeProperty(target.variable)
   }
 }
-export function PersonalizacaoSection({ onEnterEditor }: PersonalizacaoSectionProps) {
+export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: PersonalizacaoSectionProps) {
   const { user, isAdmin } = useAuth()
   const [colors, setColors] = useState<Record<string, string>>({})
   const [sizes, setSizes] = useState<Record<string, string>>({})
@@ -65,6 +65,7 @@ export function PersonalizacaoSection({ onEnterEditor }: PersonalizacaoSectionPr
   const [saveState, setSaveState] = useState<SaveState>('loading')
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [newBtnLabel, setNewBtnLabel] = useState('')
+  const [editMode, setEditMode] = useState(false)
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {

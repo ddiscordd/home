@@ -43,17 +43,6 @@ const AdminEditorContext = createContext<AdminEditorContextValue | null>(null)
 const STORAGE_PATH = 'systemSettings/elementOverrides'
 const ELEMENT_ACTION = 'element_override'
 
-/** Serializa um objeto com chaves ordenadas p/ comparar histórico semântico. */
-function stableKey(overrides: Record<string, ElementOverride>): string {
-  const ids = Object.keys(overrides).sort()
-  return ids
-    .map(
-      (id) =>
-        `${id}:${JSON.stringify({ style: overrides[id].style ?? {}, visible: overrides[id].visible, order: overrides[id].order })}`,
-    )
-    .join('|')
-}
-
 export function AdminEditorProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
   const adminUid = user?.uid === ADMIN_UID ? user.uid : null
