@@ -23,6 +23,7 @@ export type AuthErrorCode =
   | 'auth/wrong-password'
   | 'auth/popup-closed-by-user'
   | 'auth/popup-blocked'
+  | 'auth/unauthorized-domain'
   | 'auth/network-request-failed'
   | 'auth/too-many-requests'
   | 'unknown'
@@ -46,6 +47,7 @@ function toAuthErrorCode(raw: unknown): AuthErrorCode {
     'auth/wrong-password',
     'auth/popup-closed-by-user',
     'auth/popup-blocked',
+    'auth/unauthorized-domain',
     'auth/network-request-failed',
     'auth/too-many-requests',
   ]
@@ -70,6 +72,8 @@ export function friendlyAuthMessage(code: AuthErrorCode): string {
       return 'A janela do Google foi fechada antes de concluir. Tente novamente.'
     case 'auth/popup-blocked':
       return 'O navegador bloqueou a janela do Google. Permita pop-ups e tente novamente.'
+    case 'auth/unauthorized-domain':
+      return 'Este domínio não está autorizado no Firebase. Peça para o desenvolvedor adicionar o domínio em Authentication > Settings > Authorized domains.'
     case 'auth/network-request-failed':
       return 'Sem conexão com a internet. Verifique sua rede e tente novamente.'
     case 'auth/too-many-requests':
