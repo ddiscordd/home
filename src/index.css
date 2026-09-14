@@ -1,0 +1,193 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  /* Identidade própria: base azul-noite profunda + acento violeta */
+  --color-abyss-950: #070a12;
+  --color-abyss-900: #0b0e17;
+  --color-abyss-850: #10141f;
+  --color-abyss-800: #151a28;
+  --color-abyss-700: #1c2333;
+  --color-abyss-600: #273044;
+
+  --color-accent-200: #d5ccff;
+  --color-accent-300: #b7aaff;
+  --color-accent-400: #9d8cff;
+  --color-accent-500: #7c5cff;
+  --color-accent-600: #6347e6;
+
+  --color-success-500: #3ba55d;
+  --color-danger-400: #f27474;
+  --color-danger-500: #ed4245;
+  --color-warning-500: #faa81a;
+}
+
+:root {
+  --system-bg: #0b0e17;
+  --system-rail: #070a12;
+  --system-sidebar: #10141f;
+  --system-chat: #151a28;
+  --system-header: #10141f;
+  --system-panel: #10141f;
+  --system-text: #f2f3f5;
+  --system-text-secondary: #b5bac1;
+  --system-accent: #7c5cff;
+  --system-input: #151a28;
+  --system-button: #7c5cff;
+  --system-hover: rgba(255, 255, 255, 0.04);
+  --system-rail-width: 72px;
+  --system-sidebar-width: 240px;
+  --system-header-height: 48px;
+  --system-font-scale: 100%;
+  --system-radius: 8px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-abyss-900);
+  color: var(--color-slate-200);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent-500) 40%, transparent);
+}
+
+/* Scrollbars finas e escuras, padrão app de chat */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-abyss-600) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-abyss-600);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============ Animaciones (solo CSS, sin dependencias) ============ */
+@keyframes concord-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes concord-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: concord-fade-up 0.45s ease-out both;
+}
+.animate-fade-in {
+  animation: concord-fade-in 0.4s ease-out both;
+}
+
+/* Fondo de auth: gradientes discretos + glow muy suave */
+.auth-bg {
+  background:
+    radial-gradient(60% 50% at 20% 20%, rgba(124, 92, 255, 0.16), transparent 70%),
+    radial-gradient(55% 45% at 85% 75%, rgba(61, 92, 255, 0.1), transparent 70%),
+    linear-gradient(160deg, #0b0e17 0%, #10141f 55%, #0b0e17 100%);
+}
+
+.auth-glow {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(46px);
+  opacity: 0.35;
+}
+.auth-glow--a {
+  top: -8%;
+  left: -6%;
+  width: 300px;
+  height: 300px;
+  background: rgba(124, 92, 255, 0.28);
+}
+.auth-glow--b {
+  right: -8%;
+  bottom: -6%;
+  width: 260px;
+  height: 260px;
+  background: rgba(77, 157, 224, 0.2);
+}
+
+/* Respetar prefers-reduced-motion: elimina animaciones no esenciales */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-fade-slide,
+  .animate-float,
+  .animate-modal-in {
+    animation: none;
+  }
+  .auth-glow {
+    display: none;
+  }
+}
+
+@keyframes concord-fade-slide {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-fade-slide {
+  animation: concord-fade-slide 0.3s ease-out both;
+}
+
+@keyframes concord-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-float {
+  animation: concord-float 5s ease-in-out infinite;
+}
+
+@keyframes concord-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-modal-in {
+  animation: concord-modal-in 200ms ease-out both;
+}

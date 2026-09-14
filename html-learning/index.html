@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concord — Protótipo visual</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- HEADER SUPERIOR (compacto, 38px) -->
+    <header class="top-bar">
+      <div class="top-bar__left">
+        <span class="top-bar__logo" aria-hidden="true">✦</span>
+        <span class="top-bar__context" id="topbar-context">Concord</span>
+      </div>
+      <div class="top-bar__right">
+        <button class="icon-btn" aria-label="Notificações" title="Notificações">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6v-5a7 7 0 0 0-5-6.7V3a2 2 0 1 0-4 0v1.3A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Ajuda" title="Ajuda">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 17h-2v-2h2Zm1.6-6.2-1 .9c-.7.6-1.1 1.1-1.1 2.2h-2v-.5c0-.9.4-1.7 1.1-2.3l1.2-1.2a1.5 1.5 0 1 0-2.6-1H8a3.5 3.5 0 1 1 6.6 1.9Z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Configurações" title="Configurações">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="m20.4 13-.1-1 .1-1 1.9-1.5-1.9-3.3-2.3.9a7 7 0 0 0-1.7-1l-.3-2.4h-3.8l-.3 2.4a7 7 0 0 0-1.7 1l-2.3-.9L5.6 9.5 7.5 11l-.1 1 .1 1-1.9 1.5 1.9 3.3 2.3-.9a7 7 0 0 0 1.7 1l.3 2.4h3.8l.3-2.4a7 7 0 0 0 1.7-1l2.3.9 1.9-3.3ZM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-body">
+
+      <!-- SERVER RAIL (66px) -->
+      <aside class="server-rail" aria-label="Servidores">
+        <button class="rail-btn rail-home" id="btn-nav-home" aria-label="Início" title="Início">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 3 4 9v12h5v-7h6v7h5V9Z"/></svg>
+        </button>
+        <div class="rail-divider" aria-hidden="true"></div>
+        <div class="rail-list" id="server-list"></div>
+        <button class="rail-btn rail-add" id="btn-add-server" aria-label="Adicionar servidor" title="Adicionar servidor">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6Z"/></svg>
+        </button>
+        <div class="rail-spacer"></div>
+        <button class="rail-btn rail-explore" aria-label="Explorar comunidades" title="Explorar">
+          <svg viewBox="0 0 24 24" width="19" height="19"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm3.5 6.5-2.1 5-5 2.1 2.1-5Z"/></svg>
+        </button>
+      </aside>
+
+            <!-- NAVEGAÇÃO (232px) -->
+      <aside class="nav-sidebar" aria-label="Navegação">
+        <label class="searchbar">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5Zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z"/></svg>
+          <input type="search" id="global-search" placeholder="Buscar" aria-label="Buscar" autocomplete="off" />
+        </label>
+
+        <nav class="nav-scroll">
+          <p class="nav-section">Navegação</p>
+          <button class="nav-item nav-item--active" id="btn-nav-friends">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5Z"/></svg>
+            Amigos
+          </button>
+          <button class="nav-item" id="btn-nav-discover">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm3.5 6.5-2.1 5-5 2.1 2.1-5Z"/></svg>
+            Descobrir
+          </button>
+
+          <p class="nav-section">Mensagens diretas</p>
+          <div id="dm-list"></div>
+        </nav>
+
+        <!-- PAINEL DO USUÁRIO -->
+        <footer class="user-panel">
+          <div class="avatar avatar--sm" id="me-avatar" style="background:#5865f2">Z</div>
+          <div class="user-panel__info">
+            <strong id="me-name">Zynox</strong>
+            <span class="user-panel__status">online</span>
+          </div>
+          <div class="user-panel__actions">
+            <button class="icon-btn" aria-label="Microfone" title="Microfone">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11Z"/></svg>
+            </button>
+            <button class="icon-btn" aria-label="Áudio" title="Áudio">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V22h2v-3.1A7 7 0 0 0 19 12Z"/></svg>
+            </button>
+            <button class="icon-btn" aria-label="Configurações" title="Configurações">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="m20.4 13-.1-1 .1-1 1.9-1.5-1.9-3.3-2.3.9a7 7 0 0 0-1.7-1l-.3-2.4h-3.8l-.3 2.4a7 7 0 0 0-1.7 1l-2.3-.9L5.6 9.5 7.5 11l-.1 1 .1 1-1.9 1.5 1.9 3.3 2.3-.9a7 7 0 0 0 1.7 1l.3 2.4h3.8l.3-2.4a7 7 0 0 0 1.7-1l2.3.9 1.9-3.3ZM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Z"/></svg>
+            </button>
+          </div>
+        </footer>
+      </aside>
+      <!-- CONTEÚDO PRINCIPAL -->
+      <main class="main-content">
+        <div class="content-header">
+          <div class="content-header__left">
+            <span class="content-header__icon" id="header-icon" aria-hidden="true"></span>
+            <strong id="header-title">Amigos</strong>
+            <span class="content-header__divider" aria-hidden="true"></span>
+            <span class="content-header__desc" id="header-desc">Conecte-se com sua galera</span>
+          </div>
+          <div class="content-header__right" id="header-actions"></div>
+        </div>
+
+        <div class="content-body">
+          <!-- View: Amigos -->
+          <section class="view" id="view-friends">
+            <div class="friends-tabs" role="tablist">
+              <button class="friends-tab friends-tab--active" role="tab">Online</button>
+              <button class="friends-tab" role="tab">Todos</button>
+              <button class="friends-tab" role="tab">Pendentes</button>
+            </div>
+            <div class="friends-scroll" id="friends-list"></div>
+          </section>
+
+          <!-- View: Chat (servidor/DM) -->
+          <section class="view" id="view-chat" hidden>
+            <div class="message-list" id="message-list"></div>
+            <form class="composer" id="composer">
+              <button type="button" class="icon-btn" aria-label="Anexar" title="Anexar">
+                <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M16.5 6v9.5a4.5 4.5 0 0 1-9 0V6a3 3 0 0 1 6 0v9a1.5 1.5 0 0 1-3 0V7H9v8a3 3 0 0 0 6 0V6a4.5 4.5 0 0 0-9 0v9.5a6 6 0 0 0 12 0V6Z"/></svg>
+              </button>
+              <input id="composer-input" type="text" placeholder="Conversar" autocomplete="off" aria-label="Mensagem" />
+              <button type="submit" class="icon-btn icon-btn--accent" aria-label="Enviar" title="Enviar">
+                <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12 2-12 2Z"/></svg>
+              </button>
+            </form>
+          </section>
+
+          <!-- View: estado vazio -->
+          <section class="view view--center" id="view-empty" hidden>
+            <div class="empty-state">
+              <div class="empty-state__icon" aria-hidden="true">✦</div>
+              <h2 id="empty-title">Você ainda não possui nenhuma comunidade</h2>
+              <p id="empty-desc">Crie um servidor ou participe de um através de um convite.</p>
+              <div class="empty-state__actions">
+                <button class="btn btn--primary" id="btn-empty-create">Criar servidor</button>
+                <button class="btn btn--ghost" id="btn-empty-invite">Entrar com convite</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- PAINEL DIREITO -->
+      <aside class="right-sidebar" aria-label="Detalhes">
+        <div class="right-scroll" id="right-content"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- MODAL: criar servidor -->
+  <div class="modal-backdrop" id="modal-server" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close icon-btn" id="btn-modal-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="m19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12Z"/></svg>
+      </button>
+      <h2 class="modal__title" id="modal-title">Criar servidor</h2>
+      <p class="modal__desc">Qual será o nome do seu servidor?</p>
+      <label class="field">
+        <span>Nome do servidor</span>
+        <input id="input-server-name" type="text" maxlength="30" placeholder="Minha comunidade" />
+      </label>
+      <p class="field__label">Ícone (opcional)</p>
+      <div class="icon-options" id="icon-options">
+        <button class="icon-option icon-option--active" data-color="#5865f2" style="background:#5865f2" aria-label="Ícone roxo">C</button>
+        <button class="icon-option" data-color="#23a55a" style="background:#23a55a" aria-label="Ícone verde">C</button>
+        <button class="icon-option" data-color="#e5a83b" style="background:#e5a83b" aria-label="Ícone âmbar">C</button>
+        <button class="icon-option" data-color="#da373c" style="background:#da373c" aria-label="Ícone vermelho">C</button>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" id="btn-modal-cancel">Cancelar</button>
+        <button class="btn btn--primary" id="btn-modal-create">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

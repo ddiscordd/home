@@ -1,0 +1,49 @@
+/* ============ TOKENS DE DESIGN (identidade própria) ============ */
+:root {
+  /* Fundos — escuro compacto */
+  --bg-primary: #0f1013;
+  --bg-secondary: #15161a;
+  --bg-tertiary: #1b1c21;
+  --bg-hover: rgba(255, 255, 255, 0.04);
+  --bg-active: rgba(255, 255, 255, 0.08);
+
+  /* Texto */
+  --text-primary: #f2f3f5;
+  --text-secondary: #b5bac1;
+  --text-muted: #6d7078;
+
+  /* Marca */
+  --accent: #5865f2;
+  --accent-hover: #6a75f5;
+  --accent-soft: rgba(88, 101, 242, 0.18);
+
+  /* Linhas */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+
+  /* Status */
+  --online: #23a55a;
+  --idle: #e5a83b;
+  --offline: #80848e;
+
+  /* Perigo / sucesso */
+  --danger: #da373c;
+  --success: #23a55a;
+
+  /* Formas */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-circle: 50%;
+
+  /* Movimento */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+
+  /* Tipografia */
+  --font: "Inter", "Segoe UI", system-ui, sans-serif;
+  --fs-title: 16px;
+  --fs-normal: 14px;
+  --fs-secondary: 13px;
+  --fs-micro: 12px;
+}

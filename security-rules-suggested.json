@@ -1,0 +1,118 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "usernames": {
+      ".read": "auth != null",
+      "$username": {
+        ".write": "auth != null && (!data.exists() || data.val() === auth.uid || newData.val() === auth.uid)"
+      }
+    },
+
+    "friends": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$friendUid": {
+          ".write": "auth != null && (auth.uid === $uid || auth.uid === $friendUid)"
+        }
+      }
+    },
+
+    "friendRequests": {
+      "$requestId": {
+        ".read": "auth != null && (data.child('fromUid').val() === auth.uid || data.child('toUid').val() === auth.uid)",
+        ".write": "auth != null && (!data.exists() ? auth.uid === newData.child('fromUid').val() : (auth.uid === data.child('toUid').val() || auth.uid === data.child('fromUid').val()))",
+        ".validate": "newData.child('fromUid').isString() && newData.child('toUid').isString() && (!newData.child('status').exists() || newData.child('status').val().matches(/^(pending|accepted|declined|canceled)$/))"
+      }
+    },
+
+    "friendRequestsIn": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null"
+      }
+    },
+
+    "friendRequestsOut": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null"
+      }
+    },
+
+    "conversations": {
+      "$convId": {
+        ".read": "auth != null && $convId.contains(auth.uid)",
+        ".write": "auth != null && $convId.contains(auth.uid)"
+      }
+    },
+
+    "dms": {
+      "$convId": {
+        ".read": "auth != null && $convId.contains(auth.uid)",
+        ".write": "auth != null && $convId.contains(auth.uid)"
+      }
+    },
+
+    "dmState": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    },
+
+    "servers": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+
+    "userServers": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "serverCodes": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+
+    "invites": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+
+    "userSettings": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+
+    "systemSettings": {
+      ".read": "auth != null",
+      ".write": "auth != null && (auth.token.admin === true || auth.uid === 'zVxzEQ3zI1gVRJTazBMh8TsOeFq2')"
+    },
+
+    "adminActions": {
+      ".read": "auth != null && (auth.token.admin === true || auth.uid === 'zVxzEQ3zI1gVRJTazBMh8TsOeFq2')",
+      ".write": "auth != null && (auth.token.admin === true || auth.uid === 'zVxzEQ3zI1gVRJTazBMh8TsOeFq2')"
+    }
+  }
+}
