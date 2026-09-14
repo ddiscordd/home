@@ -3,7 +3,7 @@ import type { Channel, ChannelCategory, Server } from '../../types'
 import { cn } from '../../utils/cn'
 
 interface ChannelSidebarProps {
-  server: Server
+  server: Server | null
   categories: ChannelCategory[]
   channels: Channel[]
   activeChannelId: string
@@ -98,7 +98,7 @@ export function ChannelSidebar({
           aria-expanded={menuOpen}
           className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-white transition-colors duration-150 hover:bg-white/[0.04]"
         >
-          <span className="truncate">{server.icon ? `${server.icon} ${server.name}` : server.name}</span>
+          <span className="truncate">{server ? (server.icon ? `${server.icon} ${server.name}` : server.name) : 'Servidor'}</span>
           <span className={cn('text-slate-400 transition-transform', menuOpen && 'rotate-180')}>▾</span>
         </button>
         {menuOpen && (

@@ -149,10 +149,11 @@ export function AppShell() {
     )
   }
 
-  if (!activeServer) return <AppLoading />
-
-  const isOwner = !activeServer.ownerId || activeServer.ownerId === user?.uid
+  const isOwner = activeServer ? (!activeServer.ownerId || activeServer.ownerId === user?.uid) : false
   const loading = status === 'LOADING_SERVER'
+
+  // Mostra loading apenas se não há servidor ativo E está carregando
+  if (status === 'LOADING_SERVER' && !activeServer) return <AppLoading />
 
   return (
     <div

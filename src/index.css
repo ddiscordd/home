@@ -3,21 +3,25 @@
 @theme {
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
 
+  /* Accent (usado como bg-accent, text-accent, bg-accent/opacity, etc.) */
+  --color-accent: #5865f2;
+  --color-accent-hover: #6874ff;
+
   /* Cores dinâmicas: controladas pelas variáveis CSS setadas pela personalização.
      O usuário altera via Configurações → Personalização avançada e as mudanças
      refletem instantaneamente na UI. */
-  --color-abyss-950: var(--system-rail);
-  --color-abyss-900: var(--system-bg);
-  --color-abyss-850: var(--system-sidebar);
-  --color-abyss-800: var(--system-chat);
-  --color-abyss-700: var(--system-header);
-  --color-abyss-600: var(--system-input);
+  --color-abyss-950: #0a0d13;
+  --color-abyss-900: #0d0f14;
+  --color-abyss-850: #10131a;
+  --color-abyss-800: #151923;
+  --color-abyss-700: #10131a;
+  --color-abyss-600: #171b25;
 
   --color-accent-200: #d5ccff;
-  --color-accent-300: color-mix(in srgb, var(--system-accent) 80%, white);
-  --color-accent-400: var(--system-accent);
-  --color-accent-500: var(--system-accent);
-  --color-accent-600: color-mix(in srgb, var(--system-accent) 80%, black);
+  --color-accent-300: #b8c0ff;
+  --color-accent-400: #5865f2;
+  --color-accent-500: #5865f2;
+  --color-accent-600: #4752c4;
 
   --color-success-500: #23c483;
   --color-danger-400: #f27474;
