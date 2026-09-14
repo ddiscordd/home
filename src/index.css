@@ -23,6 +23,24 @@
   --color-danger-400: #f27474;
   --color-danger-500: #ed4245;
   --color-warning-500: #faa81a;
+
+  /* Surface colors — Tailwind v4 requires @theme to generate utilities */
+  --color-surface-0: #0d0f14;
+  --color-surface-1: #10131a;
+  --color-surface-2: #151923;
+  --color-surface-3: #171b25;
+  --color-surface-4: #1c2230;
+
+  /* Text colors */
+  --color-text-primary: #f5f7fb;
+  --color-text-secondary: #aab2c0;
+  --color-text-muted: #737d8d;
+
+  /* Status colors */
+  --color-online: #23c483;
+  --color-idle: #faa81a;
+  --color-dnd: #ed4245;
+  --color-offline: #737d8d;
 }
 
 /* ============================================================
@@ -114,7 +132,7 @@ body,
 body {
   margin: 0;
   background-color: var(--color-abyss-900);
-  color: var(--color-slate-200);
+  color: var(--color-text-secondary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
