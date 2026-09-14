@@ -32,14 +32,13 @@ function App() {
   // Primeiro acesso: tutorial persistido no banco (onboardingCompleted).
   if (status === 'ONBOARDING') return <OnboardingPage />
 
+  // Configuração: view completa que substitui a aplicação principal.
+  if (settingsOpen) {
+    return <SettingsPage />
+  }
+
   // Aplicação principal (servidores reais; trata EMPTY_STATE/ERROR internamente).
-  // Configurações = overlay por cima: servidor/canal/conversa atuais permanecem preservados.
-  return (
-    <>
-      <AppShell />
-      {settingsOpen && <SettingsPage />}
-    </>
-  )
+  return <AppShell />
 }
 
 export default App

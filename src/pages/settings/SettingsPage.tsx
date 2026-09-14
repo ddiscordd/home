@@ -36,7 +36,7 @@ const SECTIONS: SectionEntry[] = [
   { id: 'logout', label: 'Sair da conta', category: 'Perigo' },
 ]
 
-/** Tela de configurações — overlay interno que preserva a aplicação por baixo. */
+/** Tela de configurações — view completa que substitui a aplicação principal. */
 export function SettingsPage() {
   const { closeSettings, incomingRequests, setMainView } = useApp()
   const { user } = useAuth()
@@ -51,13 +51,13 @@ export function SettingsPage() {
   const badgeFor = (id: SettingsSection): string | null => (id === 'solicitacoes' && requestCount > 0 ? String(requestCount) : null)
 
   return (
-    <div className="animate-fade-in fixed inset-0 z-50 flex bg-surface-0 text-slate-200">
+    <div className="animate-fade-in flex h-full w-full bg-surface-0 text-slate-200">
       {/* Navegação lateral de configurações */}
       <aside className="flex w-56 shrink-0 flex-col border-r border-white/[0.055] bg-surface-1">
         <button
           type="button"
           onClick={closeSettings}
-          className="flex h-10 items-center gap-2 border-b border-abyss-950/60 px-4 text-left text-sm font-semibold text-slate-300 transition-colors hover:bg-abyss-800 hover:text-white"
+          className="flex h-12 items-center gap-2 border-b border-white/[0.055] px-4 text-left text-sm font-semibold text-slate-300 transition-colors hover:bg-white/[0.04] hover:text-white"
         >
           ← Voltar
         </button>
