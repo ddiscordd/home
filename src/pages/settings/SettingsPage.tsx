@@ -75,8 +75,8 @@ export function SettingsPage() {
                   onClick={() => setSection(entry.id)}
                   aria-current={active ? 'true' : undefined}
                   className={cn(
-                    'flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm font-medium transition-colors',
-                    active ? 'bg-abyss-600 text-white' : 'text-slate-400 hover:bg-abyss-800 hover:text-slate-200',
+                    'flex w-full items-center justify-between rounded-[var(--radius-md)] px-2 py-1.5 text-left text-sm font-medium transition-all duration-150',
+                    active ? 'bg-accent/15 text-white' : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200',
                     entry.id === 'logout' && 'text-danger-400 hover:bg-danger-500/15 hover:text-danger-300',
                   )}
                 >
@@ -127,7 +127,7 @@ export function SettingsPage() {
                   setMainView('friends')
                   closeSettings()
                 }}
-                className="mt-4 h-10 rounded-lg bg-accent-500 px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-400"
+                className="mt-4 h-10 rounded-[var(--radius-lg)] bg-accent px-5 text-sm font-semibold text-white transition-all duration-150 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98]"
               >
                 Abrir área de amigos
               </button>

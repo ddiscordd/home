@@ -15,7 +15,7 @@ interface ServerSidebarProps {
 
 export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onOpenFriends, friendsActive = false, style }: ServerSidebarProps) {
   return (
-    <nav aria-label="Servidores" className="flex shrink-0 flex-col items-center gap-2 overflow-y-auto bg-abyss-950 py-3" style={style}>
+    <nav aria-label="Servidores" className="flex shrink-0 flex-col items-center gap-2 overflow-y-auto bg-surface-0 py-3" style={style}>
       {/* Botão Amigos */}
       <button
         type="button"
@@ -23,8 +23,8 @@ export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onO
         aria-label="Abrir área de amigos"
         onClick={onOpenFriends}
         className={cn(
-          'group/server relative flex h-12 w-12 items-center justify-center rounded-2xl bg-abyss-700 text-sm font-bold text-white transition-all duration-200 hover:rounded-xl hover:bg-accent-500 hover:-translate-y-0.5',
-          friendsActive && 'rounded-xl bg-accent-500 shadow-sm',
+          'group/server relative flex h-12 w-12 items-center justify-center rounded-2xl bg-surface-3 text-sm font-bold text-white transition-all duration-200 hover:rounded-xl hover:bg-accent hover:-translate-y-0.5',
+          friendsActive && 'rounded-xl bg-accent shadow-sm',
         )}
       >
         {/* Indicador lateral */}
@@ -76,7 +76,7 @@ export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onO
                 </span>
               ) : null}
               {server.hasPing && !server.unreadCount ? (
-                <span className="absolute -right-0.5 -bottom-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-[#0a0d13] bg-danger-500" />
+                <span className="absolute -right-0.5 -bottom-0.5 h-3.5 w-3.5 rounded-full border-[3px] border-surface-0 bg-danger-500" />
               ) : null}
             </button>
           </div>
@@ -90,7 +90,7 @@ export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onO
           title="Adicionar servidor"
           aria-label="Adicionar servidor"
           onClick={onCreate}
-          className="group/add flex h-12 w-12 items-center justify-center rounded-[18px] bg-abyss-700 text-xl font-medium text-success-500 transition-all duration-200 hover:rounded-[14px] hover:bg-success-500 hover:text-white hover:-translate-y-0.5 active:scale-95"
+          className="group/add flex h-12 w-12 items-center justify-center rounded-[18px] bg-surface-3 text-xl font-medium text-success-500 transition-all duration-200 hover:rounded-[14px] hover:bg-success-500 hover:text-white hover:-translate-y-0.5 active:scale-95"
         >
           +
         </button>
@@ -98,7 +98,7 @@ export function ServerSidebar({ servers, activeServerId, onSelect, onCreate, onO
           type="button"
           title="Explorar servidores"
           onClick={() => window.alert('Explorar: em breve (mock).')}
-          className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-abyss-700 text-lg text-slate-300 transition-all duration-200 hover:rounded-[14px] hover:bg-accent-500 hover:text-white hover:-translate-y-0.5 active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-surface-3 text-lg text-slate-300 transition-all duration-200 hover:rounded-[14px] hover:bg-accent hover:text-white hover:-translate-y-0.5 active:scale-95"
         >
           ✦
         </button>

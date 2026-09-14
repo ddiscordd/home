@@ -210,7 +210,7 @@ export function AppShell() {
               <button
                 type="button"
                 onClick={() => setChannelModalCategory(null)}
-                className="h-10 rounded-lg bg-accent-500 px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-400"
+                className="h-10 rounded-[var(--radius-lg)] bg-accent px-5 text-sm font-semibold text-white transition-all duration-150 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98]"
               >
                 Criar canal
               </button>
@@ -240,7 +240,7 @@ export function AppShell() {
       )}
 
       {loading && (
-        <div className="absolute inset-0 z-40 flex items-center justify-center bg-abyss-950/70">
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-surface-0/80 backdrop-blur-sm">
           <AppLoading />
         </div>
       )}

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { useApp } from '../../contexts/AppContext'
 import { cn } from '../../utils/cn'
+import { MicIcon, MicOffIcon, HeadphonesIcon, SettingsIcon } from '../common/Icons'
 
 /** Painel do usuário: avatar/nome + mic/áudio + ⚙ (abre Configurações). Logout fica dentro delas. */
 export function UserPanel() {
@@ -49,7 +50,7 @@ export function UserPanel() {
           muted && 'bg-danger-500/15 text-danger-500 hover:bg-danger-500 hover:text-white',
         )}
       >
-        {muted ? '✕' : '◉'}
+        {muted ? <MicOffIcon size={16} /> : <MicIcon size={16} />}
       </button>
       <button
         type="button"
@@ -61,7 +62,7 @@ export function UserPanel() {
           deafened && 'bg-danger-500/15 text-danger-500 hover:bg-danger-500 hover:text-white',
         )}
       >
-        ♪
+        <HeadphonesIcon size={16} />
       </button>
       <button
         type="button"
@@ -70,7 +71,7 @@ export function UserPanel() {
         onClick={openSettings}
         className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-400 transition-all duration-150 hover:bg-accent/15 hover:text-accent-300"
       >
-        ⚙
+        <SettingsIcon size={16} />
       </button>
     </div>
   )

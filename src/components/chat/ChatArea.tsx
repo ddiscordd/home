@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Channel, Message, User } from '../../types'
 import { Avatar } from '../common/Avatar'
 import { formatTime } from '../../utils/format'
+import { SearchIcon, PinIcon, PlusIcon, SmileIcon, SendIcon, HashtagIcon, MoreVerticalIcon } from '../common/Icons'
 
 interface ChatAreaProps {
   channel: Channel
@@ -54,8 +55,8 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
           </>
         )}
         <div className="ml-auto flex items-center gap-1">
-          <button type="button" title="Pesquisar" className="icon-button">🔍</button>
-          <button type="button" title="Fixar mensagens" className="icon-button">📌</button>
+          <button type="button" title="Pesquisar" className="icon-button"><SearchIcon size={16} /></button>
+          <button type="button" title="Fixar mensagens" className="icon-button"><PinIcon size={16} /></button>
         </div>
       </header>
 
@@ -63,8 +64,8 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
       <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         {messages.length === 0 && (
           <div className="flex h-full flex-col items-start justify-end pb-8">
-            <div className="animate-scale-in flex h-16 w-16 items-center justify-center rounded-[20px] bg-accent/15 text-2xl text-accent-300">
-              #
+            <div className="animate-scale-in flex h-16 w-16 items-center justify-center rounded-[20px] bg-accent/15 text-accent-300">
+              <HashtagIcon size={28} />
             </div>
             <h3 className="animate-fade-slide mt-4 text-xl font-bold text-white">
               Boas-vindas ao #{channel.name}!
@@ -109,9 +110,9 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
                 </div>
                 {/* Ações da mensagem no hover */}
                 <div className="absolute right-2 -top-3 hidden items-center gap-0.5 rounded-[var(--radius-md)] border border-white/[0.08] bg-surface-2 px-1 py-0.5 opacity-0 shadow-sm transition-all duration-150 group-hover/message:flex group-hover/message:opacity-100">
-                  <button type="button" title="Reagir" className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white">😊</button>
+                  <button type="button" title="Reagir" className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white"><SmileIcon size={14} /></button>
                   <button type="button" title="Responder" className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white">↩</button>
-                  <button type="button" title="Mais" className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white">⋯</button>
+                  <button type="button" title="Mais" className="flex h-7 w-7 items-center justify-center rounded-[var(--radius-sm)] text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white"><MoreVerticalIcon size={14} /></button>
                 </div>
               </div>
             </div>
@@ -134,7 +135,7 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
             onClick={() => window.alert('Anexos: em breve (mock).')}
             className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-500 transition-all duration-150 hover:bg-white/[0.06] hover:text-slate-300"
           >
-            +
+            <PlusIcon size={18} />
           </button>
           <input
             value={draft}
@@ -156,7 +157,7 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
             onClick={() => setDraft((d) => `${d}🙂`)}
             className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] text-slate-500 transition-all duration-150 hover:bg-white/[0.06] hover:text-slate-300"
           >
-            ☺
+            <SmileIcon size={18} />
           </button>
           <button
             type="button"
@@ -165,7 +166,7 @@ export function ChatArea({ channel, messages, usersById, fallbackUser, onSend }:
             disabled={!draft.trim()}
             className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] bg-accent text-white transition-all duration-150 hover:bg-accent-hover hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
           >
-            ➤
+            <SendIcon size={16} />
           </button>
         </div>
       </div>
