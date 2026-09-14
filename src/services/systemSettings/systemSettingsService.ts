@@ -61,6 +61,8 @@ export async function logAdminAction(input: {
 
 export interface UserAppearance {
   colors?: Record<string, string>
+  sizes?: Record<string, string>
+  hiddenButtons?: string[]
   fontScale?: number
   sidebarWidth?: number
 }

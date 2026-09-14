@@ -29,7 +29,7 @@ const SECTIONS: SectionEntry[] = [
   { id: 'perfil', label: 'Perfil', category: 'Conta' },
   { id: 'senha', label: 'Conta', category: 'Conta' },
   { id: 'aparencia', label: 'Aparência', category: 'Aparência' },
-  { id: 'personalizacao', label: 'Personalização avançada', category: 'Aparência', adminOnly: true },
+  { id: 'personalizacao', label: 'Personalização avançada', category: 'Aparência' },
   { id: 'privacidade', label: 'Privacidade', category: 'Privacidade' },
   { id: 'solicitacoes', label: 'Solicitações', category: 'Amigos' },
   { id: 'aplicacao', label: 'Notificações', category: 'Aplicação' },
@@ -39,16 +39,12 @@ const SECTIONS: SectionEntry[] = [
 /** Tela de configurações — overlay interno que preserva a aplicação por baixo. */
 export function SettingsPage() {
   const { closeSettings, incomingRequests, setMainView } = useApp()
-  const { user, isAdmin } = useAuth()
+  const { user } = useAuth()
   const { enterEditorMode } = useAdminEditor()
   const [section, setSection] = useState<SettingsSection>('perfil')
 
-  // Segurança de visibilidade: seção admin some do menu e, se estiver aberta
-  // quando o papel mudar, volta para uma seção pública.
-  const visibleSections = SECTIONS.filter((entry) => !entry.adminOnly || isAdmin)
-  useEffect(() => {
-    if (!isAdmin && section === 'personalizacao') setSection('aparencia')
-  }, [isAdmin, section])
+  // Seções visíveis para todos os usuários
+  const visibleSections = SECTIONS
 
   const requestCount = incomingRequests.length
 

@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import {
-  getSystemAppearance,
-  logAdminAction,
-  removeSystemAppearance,
-  updateSystemAppearance,
-  type SystemAppearance,
+  getUserAppearance,
+  updateUserAppearance,
+  removeUserAppearance,
+  type UserAppearance,
 } from '../../services/systemSettings/systemSettingsService'
 
 interface PersonalizacaoSectionProps {
@@ -44,7 +43,7 @@ export function isHexColor(value: string): boolean {
 }
 
 /** Aplica o dicionário de cores/tamanhos nas variáveis CSS da raiz. */
-export function applySystemAppearance(appearance: SystemAppearance): void {
+export function applySystemAppearance(appearance: UserAppearance): void {
   const root = document.documentElement
   for (const target of COLOR_TARGETS) {
     const value = appearance.colors?.[target.key]
@@ -58,7 +57,7 @@ export function applySystemAppearance(appearance: SystemAppearance): void {
   }
 }
 export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: PersonalizacaoSectionProps) {
-  const { user, isAdmin } = useAuth()
+  const { user } = useAuth()
   const [colors, setColors] = useState<Record<string, string>>({})
   const [sizes, setSizes] = useState<Record<string, string>>({})
   const [hiddenButtons, setHiddenButtons] = useState<string[]>([])
@@ -69,8 +68,9 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
+    if (!user) return
     let cancelled = false
-    getSystemAppearance()
+    getUserAppearance(user.uid)
       .then((saved) => {
         if (cancelled) return
         setColors(saved.colors ?? {})
@@ -85,7 +85,7 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [user])
 
   function scheduleSave(next: { colors: Record<string, string>; sizes: Record<string, string>; hiddenButtons: string[] }) {
     if (saveTimer.current) clearTimeout(saveTimer.current)
@@ -93,14 +93,13 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
     setErrorMsg(null)
     saveTimer.current = setTimeout(() => {
       if (!user) return
-      updateSystemAppearance(next)
+      updateUserAppearance(user.uid, next)
         .then(() => {
           setSaveState('saved')
-          return logAdminAction({ adminUid: user.uid, action: 'theme_changed', target: 'appearance' })
         })
         .catch(() => {
           setSaveState('error')
-          setErrorMsg('Sem permissão para salvar. Confira as Security Rules (systemSettings).')
+          setErrorMsg('Sem permissão para salvar. Confira as Security Rules (userSettings).')
         })
     }, 600)
   }
@@ -125,23 +124,22 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
   }
 
   async function handleRestore() {
-    if (!user || !window.confirm('Restaurar a aparência padrão para todos os usuários?')) return
+    if (!user || !window.confirm('Restaurar a aparência padrão para sua conta?')) return
     setSaveState('saving')
     try {
-      await removeSystemAppearance()
+      await removeUserAppearance(user.uid)
       setColors({})
       setSizes({})
       setHiddenButtons([])
       applySystemAppearance({})
-      await logAdminAction({ adminUid: user.uid, action: 'theme_restored', target: 'appearance' })
       setSaveState('saved')
     } catch {
       setSaveState('error')
-      setErrorMsg('Sem permissão para restaurar. Confira as Security Rules (systemSettings).')
+      setErrorMsg('Sem permissão para restaurar. Confira as Security Rules (userSettings).')
     }
   }
 
-  if (!isAdmin) return null
+  if (!user) return null
   return (
     <section>
       <div className="mb-4">
@@ -240,13 +238,6 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
                     const next = hidden ? hiddenButtons.filter((b) => b !== btn.id) : [...hiddenButtons, btn.id]
                     setHiddenButtons(next)
                     scheduleSave({ colors, sizes, hiddenButtons: next })
-                    if (user) {
-                      void logAdminAction({
-                        adminUid: user.uid,
-                        action: hidden ? 'button_restored' : 'button_hidden',
-                        target: btn.id,
-                      }).catch(() => undefined)
-                    }
                   }}
                   className={`h-7 rounded-md px-3 text-xs font-semibold transition-colors ${hidden ? 'bg-accent-500 text-white' : 'bg-abyss-700 text-slate-300 hover:text-white'}`}
                 >
@@ -272,7 +263,6 @@ export function PersonalizacaoSection({ onEnterEditor: _onEnterEditor }: Persona
               const label = newBtnLabel.trim()
               if (!label || !user) return
               setNewBtnLabel('')
-              void logAdminAction({ adminUid: user.uid, action: 'button_added', target: `custom-${Date.now()}`, newValue: label }).catch(() => undefined)
               setSaveState('saved')
             }}
             className="h-9 shrink-0 rounded-lg bg-accent-500 px-4 text-sm font-semibold text-white transition-colors hover:bg-accent-400"
